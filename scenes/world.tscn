@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjwearovoxmh6"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_qpbir"]
+[ext_resource type="PackedScene" uid="uid://efq2wqncwayo" path="res://scenes/player.tscn" id="2_kpaqy"]
+[ext_resource type="PackedScene" uid="uid://b81nvsd43b12q" path="res://scenes/enemy.tscn" id="3_sdslo"]
+[ext_resource type="PackedScene" uid="uid://bvx8xxv728ijx" path="res://scenes/plataform.tscn" id="5_s6w6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hg3f0"]
+size = Vector2(1931.5, 112)
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_qpbir")
+
+[node name="spawn_right" type="Marker2D" parent="."]
+position = Vector2(1868, 901)
+
+[node name="ColorRect" type="ColorRect" parent="spawn_right"]
+offset_left = -150.0
+offset_top = -79.0
+offset_right = 38.0
+offset_bottom = 73.0
+color = Color(1, 0.0313726, 0.176471, 1)
+
+[node name="spawn_left" type="Marker2D" parent="."]
+position = Vector2(29, 918)
+
+[node name="ColorRect" type="ColorRect" parent="spawn_left"]
+offset_left = -55.0
+offset_top = -77.0
+offset_right = 133.0
+offset_bottom = 75.0
+color = Color(1, 0.0313726, 0.176471, 1)
+
+[node name="floor" type="StaticBody2D" parent="."]
+collision_mask = 14
+
+[node name="sprite" type="ColorRect" parent="floor"]
+offset_left = -25.0
+offset_top = 975.0
+offset_right = 1912.0
+offset_bottom = 1087.0
+color = Color(0.0235294, 0.905882, 0, 1)
+
+[node name="collider" type="CollisionShape2D" parent="floor"]
+position = Vector2(944.25, 1033)
+shape = SubResource("RectangleShape2D_hg3f0")
+
+[node name="player" parent="." instance=ExtResource("2_kpaqy")]
+position = Vector2(872, 812)
+
+[node name="enemy" parent="." instance=ExtResource("3_sdslo")]
+position = Vector2(717, 855)
+
+[node name="plataform" parent="." instance=ExtResource("5_s6w6x")]
+position = Vector2(295, 825)
+
+[node name="plataform3" parent="." instance=ExtResource("5_s6w6x")]
+position = Vector2(1481, 825)
+
+[node name="plataform2" parent="." instance=ExtResource("5_s6w6x")]
+position = Vector2(825, 825)
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

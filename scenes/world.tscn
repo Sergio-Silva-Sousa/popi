@@ -2,33 +2,53 @@
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qpbir"]
 [ext_resource type="PackedScene" uid="uid://efq2wqncwayo" path="res://scenes/player.tscn" id="2_kpaqy"]
-[ext_resource type="PackedScene" uid="uid://b81nvsd43b12q" path="res://scenes/enemy.tscn" id="3_sdslo"]
 [ext_resource type="PackedScene" uid="uid://bvx8xxv728ijx" path="res://scenes/plataform.tscn" id="5_s6w6x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgjci"]
+size = Vector2(185, 129.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hg3f0"]
 size = Vector2(1931.5, 112)
 
-[node name="world" type="Node2D"]
+[node name="world" type="Node2D" node_paths=PackedStringArray("spawn_right", "spawn_left")]
 script = ExtResource("1_qpbir")
+spawn_right = NodePath("spawn_right/spawn_right")
+spawn_left = NodePath("spawn_left/spawn_left")
 
-[node name="spawn_right" type="Marker2D" parent="."]
+[node name="spawn_right" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="spawn_right"]
+position = Vector2(1818, 892)
+shape = SubResource("RectangleShape2D_pgjci")
+
+[node name="spawn_right" type="Marker2D" parent="spawn_right"]
 position = Vector2(1868, 901)
 
 [node name="ColorRect" type="ColorRect" parent="spawn_right"]
-offset_left = -150.0
-offset_top = -79.0
-offset_right = 38.0
-offset_bottom = 73.0
+offset_left = 1718.0
+offset_top = 822.0
+offset_right = 1906.0
+offset_bottom = 974.0
 color = Color(1, 0.0313726, 0.176471, 1)
 
-[node name="spawn_left" type="Marker2D" parent="."]
-position = Vector2(29, 918)
+[node name="spawn_left" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="collider" type="CollisionShape2D" parent="spawn_left"]
+position = Vector2(68.5, 905.25)
+shape = SubResource("RectangleShape2D_pgjci")
+
+[node name="spawn_left" type="Marker2D" parent="spawn_left"]
+position = Vector2(85, 915)
 
 [node name="ColorRect" type="ColorRect" parent="spawn_left"]
-offset_left = -55.0
-offset_top = -77.0
-offset_right = 133.0
-offset_bottom = 75.0
+offset_left = -28.0
+offset_top = 839.0
+offset_right = 160.0
+offset_bottom = 991.0
 color = Color(1, 0.0313726, 0.176471, 1)
 
 [node name="floor" type="StaticBody2D" parent="."]
@@ -47,9 +67,6 @@ shape = SubResource("RectangleShape2D_hg3f0")
 
 [node name="player" parent="." instance=ExtResource("2_kpaqy")]
 position = Vector2(872, 812)
-
-[node name="enemy" parent="." instance=ExtResource("3_sdslo")]
-position = Vector2(717, 855)
 
 [node name="plataform" parent="." instance=ExtResource("5_s6w6x")]
 position = Vector2(295, 825)

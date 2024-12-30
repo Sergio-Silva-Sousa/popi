@@ -7,7 +7,7 @@ size = Vector2(46, 56)
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
 script = ExtResource("1_jtfdp")
 
 [node name="collider" type="CollisionShape2D" parent="."]
@@ -26,3 +26,16 @@ limit_top = -1080
 limit_right = 1920
 limit_bottom = 1080
 limit_smoothed = true
+
+[node name="m_bullet" type="Marker2D" parent="."]
+position = Vector2(24, 1)
+
+[node name="cowndown_shot" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="cowndown_pogo" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+autostart = true

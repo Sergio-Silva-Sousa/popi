@@ -4,6 +4,7 @@
 size = Vector2(100, 20)
 
 [node name="plataform" type="StaticBody2D"]
+collision_mask = 33
 
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)

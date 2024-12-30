@@ -1,15 +1,17 @@
 extends Node2D
 
-@onready var spawn_left: Marker2D = $spawn_left
-@onready var enemy = preload("res://scenes/enemy.tscn")
-@onready var spawn_right: Marker2D = $spawn_right
+@export var spawn_right: Marker2D 
+@onready var enemy: = preload("res://scenes/enemy.tscn")
+@export var spawn_left: Marker2D 
+
 var p_spawn = 0
+
 func spawn_enemy_left():
-	var ienemy = enemy.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
+	var ienemy = enemy.instantiate()
 	ienemy.global_position = spawn_left.global_position
 	add_child(ienemy)
 func spawn_enemy_right():
-	var ienemy = enemy.instantiate(PackedScene.GEN_EDIT_STATE_MAIN)
+	var ienemy = enemy.instantiate()
 	ienemy.global_position = spawn_right.global_position
 	add_child(ienemy)
 	

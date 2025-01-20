@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwqk5euluk7ye"]
 
-[ext_resource type="Script" path="res://scenes/hitbix_enemy.gd" id="1_hd2m3"]
+[ext_resource type="Script" path="res://scripts/hitbix_enemy.gd" id="1_hd2m3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5mcx"]
 

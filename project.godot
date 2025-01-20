@@ -23,13 +23,13 @@ Global="*res://scripts/global.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=2
 window/size/window_width_override=1080
 window/size/window_height_override=1920
 
 [global_group]
 
 bullet=""
+enemy=""
 
 [input]
 
@@ -97,7 +97,9 @@ shot_right={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="spawn"
 2d_physics/layer_6="bullet"
-2d_physics/layer_7="hitbox"
+2d_physics/layer_7="hitbox_enemy"
+2d_physics/layer_8="hitbox_player"
+2d_physics/layer_10="shield"
 
 [physics]
 

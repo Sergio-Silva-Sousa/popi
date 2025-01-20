@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs8plewehiv7j"]
+[gd_scene load_steps=3 format=3 uid="uid://dwqk5euluk7ye"]
 
-[ext_resource type="Script" path="res://scenes/hitbix_enemy.gd" id="1_nc10r"]
+[ext_resource type="Script" path="res://scenes/hitbix_enemy.gd" id="1_hd2m3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c5mcx"]
 
 [node name="hibox_enemy" type="Area2D" groups=["enemy"]]
 collision_layer = 640
 collision_mask = 544
-script = ExtResource("1_nc10r")
+script = ExtResource("1_hd2m3")
 
 [node name="colision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_c5mcx")

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5gsvipypcawf"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_cpl0j"]
+[ext_resource type="PackedScene" uid="uid://cs8plewehiv7j" path="res://scenes/hitbix_enemy.tscn" id="2_tfedf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nt2oo"]
+
+[node name="air_enemy" type="CharacterBody2D" groups=["enemy"]]
+position = Vector2(0, 2)
+collision_layer = 8
+collision_mask = 515
+script = ExtResource("1_cpl0j")
+
+[node name="sprite" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = -59.0
+offset_right = 22.0
+offset_bottom = 12.0
+color = Color(1, 0.0745098, 0, 1)
+
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(2, -24)
+shape = SubResource("CircleShape2D_nt2oo")
+
+[node name="hibox_enemy" parent="." instance=ExtResource("2_tfedf")]
+position = Vector2(-3, -21)
+collision_layer = 72
+
+[node name="l_life" type="Label" parent="."]
+offset_left = -18.0
+offset_top = -105.0
+offset_right = 22.0
+offset_bottom = -50.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1

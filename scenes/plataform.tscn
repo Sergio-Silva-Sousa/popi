@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvx8xxv728ijx"]
+[gd_scene load_steps=3 format=3 uid="uid://bvx8xxv728ijx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xdmca"]
+rough = true
+absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kq77j"]
 size = Vector2(100, 20)
 
 [node name="plataform" type="StaticBody2D"]
 collision_mask = 33
+physics_material_override = SubResource("PhysicsMaterial_xdmca")
 
 [node name="collider" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 0)

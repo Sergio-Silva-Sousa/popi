@@ -41,6 +41,8 @@ func joystick_gun():
 		joystick_direction = joystick_direction.normalized()
 		var  angle = atan2(joystick_direction.y,joystick_direction.x)
 		gun.rotation = angle
+	else:
+		joystick_direction = Vector2.ZERO
 func  wasd_gun():
 	wasd_direction = Vector2.ZERO
 	wasd_direction.x = Input.get_axis("shot_left","shot_right")
@@ -52,12 +54,13 @@ func  wasd_gun():
 
 func shot():
 	var ibullet:Area2D= bullet.instantiate()
-	add_sibling(ibullet)
 	ibullet.global_position = m_bullet.global_position
 	if joystick_direction:
 		ibullet.set_direction(joystick_direction)
 	elif wasd_direction:
 		ibullet.set_direction(wasd_direction)
+	print(joystick_direction, wasd_direction)
+	add_sibling(ibullet)
 	timer_shot.start()
 	
 	

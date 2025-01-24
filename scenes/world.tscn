@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cjwearovoxmh6"]
+[gd_scene load_steps=9 format=3 uid="uid://cjwearovoxmh6"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_qpbir"]
 [ext_resource type="PackedScene" uid="uid://efq2wqncwayo" path="res://scenes/player.tscn" id="2_kpaqy"]
+[ext_resource type="PackedScene" uid="uid://b81nvsd43b12q" path="res://scenes/enemy.tscn" id="2_pk6pg"]
 [ext_resource type="PackedScene" uid="uid://0fp52kiuhvxu" path="res://scenes/hub_palyer.tscn" id="4_f5yfj"]
+[ext_resource type="PackedScene" uid="uid://c5gsvipypcawf" path="res://scenes/air_enemy.tscn" id="5_8lo86"]
 [ext_resource type="PackedScene" uid="uid://bvx8xxv728ijx" path="res://scenes/plataform.tscn" id="5_s6w6x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pgjci"]
@@ -11,11 +13,15 @@ size = Vector2(185, 2000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hg3f0"]
 size = Vector2(1931.5, 463)
 
-[node name="world" type="Node2D" node_paths=PackedStringArray("spawn_right", "spawn_left", "player")]
+[node name="world" type="Node2D" node_paths=PackedStringArray("spawn_right", "spawn_left", "player", "spawn_air_left", "spawn_air_right")]
 script = ExtResource("1_qpbir")
 spawn_right = NodePath("spawn_right/spawn_right")
+enemy = ExtResource("2_pk6pg")
+air_enemy = ExtResource("5_8lo86")
 spawn_left = NodePath("spawn_left/spawn_left")
 player = NodePath("player")
+spawn_air_left = NodePath("spawn_air_left")
+spawn_air_right = NodePath("spawn_air_right")
 
 [node name="spawn_right" type="StaticBody2D" parent="."]
 collision_layer = 16
@@ -99,6 +105,12 @@ offset_left = 1019.0
 offset_top = 513.0
 offset_right = 1120.0
 offset_bottom = 572.0
+
+[node name="spawn_air_left" type="Marker2D" parent="."]
+position = Vector2(228, -136)
+
+[node name="spawn_air_right" type="Marker2D" parent="."]
+position = Vector2(1611, -121)
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

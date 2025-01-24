@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b81nvsd43b12q"]
+[gd_scene load_steps=5 format=3 uid="uid://b81nvsd43b12q"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_phors"]
 [ext_resource type="PackedScene" uid="uid://cs8plewehiv7j" path="res://scenes/hitbix_enemy.tscn" id="2_mllkc"]
+[ext_resource type="PackedScene" uid="uid://blf0sroscfamr" path="res://scenes/l_life.tscn" id="3_716nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ps8aw"]
 size = Vector2(40, 71)
@@ -27,16 +28,4 @@ shape = SubResource("RectangleShape2D_ps8aw")
 position = Vector2(-3, -21)
 collision_layer = 72
 
-[node name="l_life" type="Label" parent="."]
-offset_left = -18.0
-offset_top = -105.0
-offset_right = 22.0
-offset_bottom = -50.0
-theme_override_font_sizes/font_size = 40
-text = "0"
-horizontal_alignment = 1
-
-[node name="phead" type="RayCast2D" parent="."]
-target_position = Vector2(1, -89)
-collision_mask = 640
-collide_with_areas = true
+[node name="l_life" parent="." instance=ExtResource("3_716nq")]

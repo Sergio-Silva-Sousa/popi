@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://blf0sroscfamr"]
+
+[ext_resource type="Script" path="res://scripts/l_life.gd" id="1_okdya"]
+
+[node name="l_life" type="Label"]
+offset_left = -18.0
+offset_top = -105.0
+offset_right = 22.0
+offset_bottom = -50.0
+theme_override_font_sizes/font_size = 40
+text = "0"
+horizontal_alignment = 1
+script = ExtResource("1_okdya")

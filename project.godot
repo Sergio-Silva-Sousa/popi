@@ -30,6 +30,8 @@ window/size/window_height_override=1920
 
 bullet=""
 enemy=""
+player=""
+bullet_enemy=""
 
 [input]
 

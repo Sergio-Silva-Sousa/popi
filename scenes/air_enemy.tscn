@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5gsvipypcawf"]
+[gd_scene load_steps=7 format=3 uid="uid://c5gsvipypcawf"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_cpl0j"]
-[ext_resource type="PackedScene" uid="uid://cs8plewehiv7j" path="res://scenes/hitbix_enemy.tscn" id="2_tfedf"]
+[ext_resource type="Script" path="res://scripts/air_enemy.gd" id="1_1y1y6"]
+[ext_resource type="PackedScene" uid="uid://dwqk5euluk7ye" path="res://scenes/hitbox_air_enemy.tscn" id="2_en8wc"]
+[ext_resource type="PackedScene" uid="uid://dv31w2im3351c" path="res://scenes/bullet_enemy.tscn" id="2_jiaio"]
+[ext_resource type="Script" path="res://scripts/hitbix_air_enemy.gd" id="3_gwfy0"]
+[ext_resource type="PackedScene" uid="uid://blf0sroscfamr" path="res://scenes/l_life.tscn" id="4_ijbjg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nt2oo"]
+radius = 42.0
 
 [node name="air_enemy" type="CharacterBody2D" groups=["enemy"]]
 position = Vector2(0, 2)
 collision_layer = 8
 collision_mask = 515
-script = ExtResource("1_cpl0j")
+script = ExtResource("1_1y1y6")
+bullet = ExtResource("2_jiaio")
 
 [node name="sprite" type="ColorRect" parent="."]
 offset_left = -18.0
@@ -19,18 +24,25 @@ offset_bottom = 12.0
 color = Color(1, 0.0745098, 0, 1)
 
 [node name="collider" type="CollisionShape2D" parent="."]
-position = Vector2(2, -24)
+position = Vector2(1, -23)
 shape = SubResource("CircleShape2D_nt2oo")
+disabled = true
 
-[node name="hibox_enemy" parent="." instance=ExtResource("2_tfedf")]
-position = Vector2(-3, -21)
-collision_layer = 72
+[node name="hibox_enemy" parent="." instance=ExtResource("2_en8wc")]
+position = Vector2(-1, -13)
+collision_layer = 64
+script = ExtResource("3_gwfy0")
 
-[node name="l_life" type="Label" parent="."]
-offset_left = -18.0
-offset_top = -105.0
-offset_right = 22.0
-offset_bottom = -50.0
-theme_override_font_sizes/font_size = 40
-text = "0"
-horizontal_alignment = 1
+[node name="l_life" parent="." instance=ExtResource("4_ijbjg")]
+
+[node name="wall_detector" type="RayCast2D" parent="."]
+position = Vector2(1, -15)
+target_position = Vector2(-20, 0)
+collision_mask = 16
+
+[node name="m_bullet" type="Marker2D" parent="."]
+position = Vector2(0, -22)
+
+[node name="t_shot" type="Timer" parent="."]
+one_shot = true
+autostart = true

@@ -9,7 +9,3 @@ func _ready() -> void:
 	my_tween.tween_property(collider,"scale",Vector2(10,10),0.1)
 	my_tween.tween_callback(self.queue_free)
 	
-
-
-func _on_area_entered(area: Area2D) -> void:
-	print("a")

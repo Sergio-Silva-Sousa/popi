@@ -1,5 +1,4 @@
 extends Area2D
-@onready var timer_invensible: Timer = $invensible
 @onready var player:CharacterBody2D = get_parent()
 @onready var colision: CollisionShape2D = $colision
 @onready var pcollider:CollisionShape2D= $"../collider"
@@ -14,11 +13,14 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("enemy"):
 		player.life -= 1
-		ins_shield()
-
+		call_deferred("ins_shield")
+	if area.is_in_group("bullet_enemy"):
+		player.life -= 5
+		call_deferred("ins_shield")
+		
 func ins_shield():
 	var ishield:StaticBody2D = shild.instantiate()
 	ishield.position = m_shield.position
-	add_sibling(ishield)
+	add_child(ishield)
 	
 	

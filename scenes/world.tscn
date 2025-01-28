@@ -23,6 +23,28 @@ player = NodePath("player")
 spawn_air_left = NodePath("spawn_air_left")
 spawn_air_right = NodePath("spawn_air_right")
 
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="hub_palyer" parent="UI" instance=ExtResource("4_f5yfj")]
+layout_mode = 1
+
 [node name="spawn_right" type="StaticBody2D" parent="."]
 collision_layer = 16
 collision_mask = 258
@@ -67,7 +89,7 @@ offset_left = -25.0
 offset_top = 975.0
 offset_right = 1912.0
 offset_bottom = 1087.0
-color = Color(0.0235294, 0.905882, 0, 1)
+color = Color(0.0235294, 0.411765, 0, 1)
 
 [node name="collider" type="CollisionShape2D" parent="floor"]
 position = Vector2(944.25, 1208.5)
@@ -92,20 +114,6 @@ collision_mask = 289
 wait_time = 2.0
 autostart = true
 
-[node name="hub_palyer" parent="." instance=ExtResource("4_f5yfj")]
-
-[node name="player_life" parent="hub_palyer" index="0"]
-offset_left = 727.0
-offset_top = 374.0
-offset_right = 927.0
-offset_bottom = 414.0
-
-[node name="coinis" parent="hub_palyer" index="1"]
-offset_left = 1019.0
-offset_top = 513.0
-offset_right = 1120.0
-offset_bottom = 572.0
-
 [node name="spawn_air_left" type="Marker2D" parent="."]
 position = Vector2(228, -136)
 
@@ -114,5 +122,3 @@ position = Vector2(1611, -121)
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]
-
-[editable path="hub_palyer"]

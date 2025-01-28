@@ -7,9 +7,11 @@ extends Node2D
 @export var player:CharacterBody2D
 @export var spawn_air_left: Marker2D 
 @export var spawn_air_right: Marker2D
-var round := 1
-
-
+var controller_round := 1 
+var  wave :=1
+#Controller spawn enemy
+var numbers :=  [0,1,2,3,4,5]
+var weights := [50,50,30,10,10,5]
 
 func _process(_delta: float) -> void:
 	if player.life <= 0:
@@ -37,8 +39,6 @@ func spawn_air_enemy_right():
 	add_child(ienemy)
 	
 func _on_timer_timeout() -> void:
-	var numbers :=  [0,1,2,3,4,5]
-	var weights := [50,50,30,10,10,5]
 	var number = chose_number(numbers,weights)
 	match number:
 		0:
@@ -65,21 +65,21 @@ func _on_child_exiting_tree(node: Node) -> void:
 			print((Global.coins))
 			Global.coins += 1
 		
-func chose_number(numbers:Array,weights:Array):
+func chose_number(cnumbers:Array,cweights:Array):
 	var total_weights = 0
 	
-	for weight in weights:
+	for weight in cweights:
 		total_weights += weight
 	
 	var pick = randi_range(0,total_weights)
 	
 	var accumulated = 0
 	
-	for i in range(numbers.size()):
-		accumulated += weights[i]
+	for i in range(cnumbers.size()):
+		accumulated += cweights[i]
 		
 		if pick <= accumulated:
-			return numbers[i]
+			return cnumbers[i]
 	 
 func controller_wave():
 	pass

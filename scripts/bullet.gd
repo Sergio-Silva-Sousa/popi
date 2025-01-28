@@ -2,7 +2,7 @@ extends Area2D
 
 @export var velocity:int =  1000
 var direction:Vector2
-var damage := 10
+var damage := 2
 func set_direction(dir):
 	direction = dir
 

@@ -1,10 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://efq2wqncwayo"]
+[gd_scene load_steps=13 format=3 uid="uid://efq2wqncwayo"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_jtfdp"]
+[ext_resource type="Texture2D" uid="uid://ctcvtgxb0tjax" path="res://sprites/player_idle.png" id="2_8gmpy"]
+[ext_resource type="Texture2D" uid="uid://o87ekpnc30xw" path="res://sprites/player.png" id="2_rss50"]
 [ext_resource type="PackedScene" uid="uid://5k74dyt7pv5i" path="res://scenes/cplayer.tscn" id="2_vq8ru"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytde1"]
+atlas = ExtResource("2_8gmpy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gpf4"]
+atlas = ExtResource("2_8gmpy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcntl"]
+atlas = ExtResource("2_rss50")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ond8"]
+atlas = ExtResource("2_rss50")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bjchj"]
+atlas = ExtResource("2_rss50")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o041w"]
+atlas = ExtResource("2_rss50")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e7l7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytde1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gpf4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcntl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ond8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bjchj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o041w")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pmjho"]
-size = Vector2(46, 56)
+size = Vector2(64, 62)
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("gun") groups=["player"]]
 collision_layer = 2
@@ -12,14 +69,16 @@ collision_mask = 29
 script = ExtResource("1_jtfdp")
 gun = NodePath("ColorRect")
 
-[node name="collider" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_pmjho")
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_e7l7e")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.480392
 
-[node name="sprite" type="ColorRect" parent="."]
-offset_left = -23.0
-offset_top = -28.0
-offset_right = 23.0
-offset_bottom = 28.0
+[node name="collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pmjho")
 
 [node name="camera" type="Camera2D" parent="."]
 limit_left = 0
